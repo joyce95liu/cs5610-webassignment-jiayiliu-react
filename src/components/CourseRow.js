@@ -11,7 +11,7 @@ class CourseRow extends React.Component {
 
             <tr><td>
                 <Link to=
-                          {`/course/${this.props.course.id}/edit`}>
+                          {`/course/${this.props.course.id}`}>
                     {this.props.course.title}
                 </Link>
                 </td>
