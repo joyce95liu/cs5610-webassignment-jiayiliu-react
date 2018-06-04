@@ -2,7 +2,6 @@ import React from 'react';
 import CourseRow from "../components/CourseRow";
 import CourseServiceClient from '../services/CourseServiceClient'
 
-
 class CourseList extends React.Component {
     constructor() {
         super();
@@ -66,7 +65,6 @@ class CourseList extends React.Component {
 
 
 
-
     render() {
         return (
             <div>
@@ -81,7 +79,6 @@ class CourseList extends React.Component {
                         <th><button onClick={this.createCourse}
                                     className="btn btn-primary">Add</button></th>
                     </tr>
-
 
 
 

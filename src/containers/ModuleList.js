@@ -18,6 +18,7 @@ class ModuleList extends React.Component {
         this.titleChanged = this.titleChanged.bind(this);
         this.createModule=this.createModule.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
+        this.deleteModule=this.deleteModule.bind(this);
 
     }
 
@@ -31,6 +32,8 @@ class ModuleList extends React.Component {
     }
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
+        this.findAllModulesForCourse(newProps.courseId)
+
     }
 
 
@@ -43,6 +46,13 @@ class ModuleList extends React.Component {
             });
     }
 
+    deleteModule(moduleId) {
+        this.moduleServiceClient
+            .deleteModule(moduleId)
+            .then(() => { this.findAllModulesForCourse(this.state.courseId);
+            });
+
+    }
 
 
 
@@ -67,7 +77,9 @@ class ModuleList extends React.Component {
 
         //return modules;
         var modules = this.state.modules.map((module) => {
-            return <ModuleListItem title={module.title} key={module.id}/>
+            return <ModuleListItem module={module}
+                title={module.title} key={module.id}
+                                   delete={this.deleteModule}/>
         });
 
         return (
@@ -81,10 +93,10 @@ class ModuleList extends React.Component {
             <div>
                 <h3> Module List for course:{this.state.courseId}</h3>
 
-                <ul className="list-group">
-                    { this.renderListOfModules()}
-                </ul>
+
                 <br/>
+
+
                 <input className="form-control"
                        onChange={this.titleChanged}
                        value={this.state.module.title}
@@ -98,7 +110,9 @@ class ModuleList extends React.Component {
                 </button>
 
 
-
+                <ul className="list-group">
+                    { this.renderListOfModules()}
+                </ul>
 
 
             </div>
