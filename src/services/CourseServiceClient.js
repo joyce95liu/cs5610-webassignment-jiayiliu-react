@@ -28,8 +28,18 @@ class CourseServiceClient {
         })}
 
 
+        deleteCourse(courseId) {
+            return fetch(COURSE_API_URL + '/' + courseId,
+                {
+                    method: 'DELETE'
+                }).then(function (response) {
+                return response;
+            })
+        }
 
-    static get instance() {
+
+
+        static get instance() {
         if(!this[_singleton])
             this[_singleton] = new CourseServiceClient(_singleton);
         return this[_singleton]
