@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+
+
 class CourseRow extends React.Component {
     constructor(props){
         super(props)
@@ -6,13 +9,18 @@ class CourseRow extends React.Component {
     render() {
         return (
 
-            <tr><td>{this.props.course.title}
+            <tr><td>
+                <Link to=
+                          {`/course/${this.props.course.id}/edit`}>
+                    {this.props.course.title}
+                </Link>
+                </td>
 
                 <button className="btn btn-danger" onClick={() =>
                 {this.props.delete(this.props.course.id)}}>
                     Delete
                 </button>
-            </td>
+
             </tr>
 
 

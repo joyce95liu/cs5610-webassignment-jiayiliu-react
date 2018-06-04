@@ -10,11 +10,13 @@ export default class CourseManager extends React.Component {
             <Router>
             <div className="container-fluid">
                 <h1>Course Manager</h1>
+           <Route path="/courses"
+               component={ CourseList}>
+           </Route>
 
-                <Route path="/courses"
-               component={CourseList}>
+                <Route path="/course/:courseId/edit"
+                       component={CourseEditor}>
                 </Route>
-
             </div>
             </Router>
         )}}
