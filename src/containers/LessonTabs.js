@@ -21,6 +21,7 @@ export default class LessonTabs extends React.Component {
         this.titleChanged=this.titleChanged.bind(this);
         this.setCourseId=this.setCourseId.bind(this);
         this.setModuleId=this.setModuleId.bind(this);
+        this.deleteLesson=this.deleteLesson.bind(this);
     }
 
     titleChanged(event) {
