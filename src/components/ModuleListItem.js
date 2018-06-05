@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import ModuleEditor from "../containers/ModuleEditor";
 
 
 export default class ModuleListItem
@@ -8,11 +9,15 @@ export default class ModuleListItem
         super(props);
     }
     render() {
+     console.log(this.props.module);
         return (
             <li className="list-group-item">
 
+                <Link to=
+                          {`/course/${this.props.courseId}/module/${this.props.module.id}`}>
+                    {this.props.title}
+                </Link>
 
-                {this.props.title}
 
                 <span className="float-right">
 

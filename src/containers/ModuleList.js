@@ -1,6 +1,8 @@
 import React from 'react';
 import ModuleListItem from '../components/ModuleListItem';
 import ModuleServiceClient from '../services/ModuleServiceClient'
+import {BrowserRouter as Router,Route} from 'react-router-dom'
+import ModuleEditor from './ModuleEditor'
 
 class ModuleList extends React.Component {
 
@@ -56,6 +58,7 @@ class ModuleList extends React.Component {
 
 
 
+
     findAllModulesForCourse(courseId) {
         this.moduleServiceClient.findAllModulesForCourse(courseId)
             .then((modules) => {
@@ -79,6 +82,7 @@ class ModuleList extends React.Component {
         var modules = this.state.modules.map((module) => {
             return <ModuleListItem module={module}
                 title={module.title} key={module.id}
+                                   courseId={this.state.courseId}
                                    delete={this.deleteModule}/>
         });
 
@@ -90,11 +94,12 @@ class ModuleList extends React.Component {
 
     render() {
         return (
+            <Router>
             <div>
                 <h3> Module List for course:{this.state.courseId}</h3>
 
-
                 <br/>
+
 
 
                 <input className="form-control"
@@ -114,9 +119,16 @@ class ModuleList extends React.Component {
                     { this.renderListOfModules()}
                 </ul>
 
+                <div>
+                    <Route
+                       path="/course/:courseId/module/:moduleId"
+                       component={ModuleEditor}>
+                    </Route>
+                </div>
+
 
             </div>
-
+            </Router>
         )
 
     }
