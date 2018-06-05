@@ -1,37 +1,33 @@
-
-
 let _singleton = Symbol();
 
 const MODULE_API_URL =
     'http://localhost:8080/api/course/CID/module';
 
 
-export default class ModuleServiceClient {
+export default class LessonServiceClient {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
             throw new Error('Singleton!!!');
     }
 
-    findAllModulesForCourse(courseId) {
-        return fetch(MODULE_API_URL
-            .replace('CID', courseId))
+    findAllLessonsForModule(courseId,moduleId) {
+        return fetch('http://localhost:8080/api/course'+'/'+courseId+'/module/'+moduleId+'/lesson')
             .then(function(response) {
                 return response.json();
             })
     }
 
-    createModule(courseId, module) {
-        return fetch(MODULE_API_URL.replace('CID', courseId),
-            {   body: JSON.stringify(module),
+    createLesson(courseId, moduleId,lesson) {
+        return fetch('http://localhost:8080/api/course/'+courseId+'/module/'+moduleId+'/lesson',
+            {   body: JSON.stringify(lesson),
                 headers: { 'Content-Type': 'application/json' },
                 method: 'POST'
             }).then(function (response)
         { return response.json(); })
     }
 
-    deleteModule(moduleId) {
-       // return fetch(MODULE_API_URL + '/' + moduleId,
-        return fetch('http://localhost:8080/api/module'+'/'+moduleId,
+    deleteLesson(lessonId){
+        return fetch('http://localhost:8080/api/lesson'+'/'+lessonId,
             {
                 method: 'DELETE'
             }).then(function (response) {
@@ -39,18 +35,12 @@ export default class ModuleServiceClient {
         })
     }
 
-    findAllModules(){
-        return fetch('http://localhost:8080/api/module')
-            .then(function(response){
-                return response.json();
-            });
-    }
 
 
 
     static get instance() {
         if(!this[_singleton])
-            this[_singleton] = new ModuleServiceClient(_singleton);
+            this[_singleton] = new LessonServiceClient(_singleton);
         return this[_singleton]
     }
 }

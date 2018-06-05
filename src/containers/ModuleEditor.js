@@ -1,5 +1,6 @@
 import React from 'react';
 import ModuleListItem from "../components/ModuleListItem";
+import LessonTabs from "./LessonTabs";
 export default class ModuleEditor
     extends React.Component {
 
@@ -37,10 +38,11 @@ export default class ModuleEditor
 
 
     render() {
+
         return (
             <div>
             <h1>Module Editor</h1>
-            {/*<ModuleListItem  courseId={this.state.courseId} moduleId={this.state.moduleId}/>*/}
+            <LessonTabs courseId={this.state.courseId} moduleId={this.state.moduleId}/>
             </div>
            )
     }

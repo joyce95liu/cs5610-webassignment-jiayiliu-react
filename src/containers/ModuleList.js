@@ -79,6 +79,9 @@ class ModuleList extends React.Component {
        // });
 
         //return modules;
+        console.log('this');
+        console.log(this.state.modules)
+        console.log('this');
         var modules = this.state.modules.map((module) => {
             return <ModuleListItem module={module}
                 title={module.title} key={module.id}

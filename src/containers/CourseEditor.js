@@ -42,7 +42,7 @@ class CourseEditor extends React.Component {
 
                  </div>
                <div className="col-8">
-                 <LessonTabs/>
+                 {/*<LessonTabs/>*/}
                </div>
              </div>
             </div>
