@@ -25,10 +25,12 @@ class CourseRow extends React.Component {
                 {/*<i className="fa fa-trash float-right" onClick={() =>*/}
                 {/*{this.props.delete(this.props.course.id)}}>*/}
                 {/*</i>*/}
+                <td>
                 <button className="btn btn-danger"   onClick={() =>
                 {this.props.delete(this.props.course.id)}}>
                     Delete
                 </button>
+                </td>
 
             </tr>
 
