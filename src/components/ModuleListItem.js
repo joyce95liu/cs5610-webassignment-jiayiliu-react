@@ -1,7 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import ModuleEditor from "../containers/ModuleEditor";
-
 
 export default class ModuleListItem
     extends React.Component {
@@ -14,10 +12,8 @@ export default class ModuleListItem
     }
 
     componentDidMount() {
-        console.log('zhu');
-
         if(this.props.back===this.props.module.id){
-            this.setState({currenttile:"list-group-item bg-info"});
+            this.setState({currenttile:"list-group-item bg-secondary"});
         }else{
             this.setState({currenttile:"list-group-item"});
         }
@@ -29,25 +25,19 @@ export default class ModuleListItem
         }else{
             this.setState({currenttile:"list-group-item"});
         }
-
     }
 
     render() {
 
-
         return (
 
-            <li className={this.state.currenttile}>
+            <li className={this.state.currenttile} onClick={() =>{this.props.handleClick(this.props.module.id)}}>
 
                 <Link to=
-                          {`/course/${this.props.courseId}/module/${this.props.module.id}`}
-                       onClick={() =>{this.props.handleClick(this.props.module.id)}}>
-
+                          {`/course/${this.props.courseId}/module/${this.props.module.id}`}>
                     {this.props.title}
 
-
                 </Link>
-
 
                 <span className="float-right">
 
@@ -56,7 +46,7 @@ export default class ModuleListItem
 
                     </i>
 
-                <i className="fa fa-pencil"></i>
+                {/*<i className="fa fa-pencil"></i>*/}
                 </span>
 
 

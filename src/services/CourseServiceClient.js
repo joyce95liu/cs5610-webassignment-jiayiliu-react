@@ -2,7 +2,6 @@ let _singleton = Symbol();
 
 const COURSE_API_URL = 'http://localhost:8080/api/course';
 
-
 class CourseServiceClient {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
@@ -36,7 +35,6 @@ class CourseServiceClient {
                 return response;
             })
         }
-
 
 
         static get instance() {

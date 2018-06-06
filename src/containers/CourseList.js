@@ -12,8 +12,6 @@ class CourseList extends React.Component {
         this.createCourse = this.createCourse.bind(this);
         this.deleteCourse = this.deleteCourse.bind(this);
 
-
-
     }
 
     componentDidMount() {
@@ -24,7 +22,6 @@ class CourseList extends React.Component {
         this.courseServiceClient
             .findAllCourses()
             .then((courses) => {
-                console.log(courses);
                 this.setState({courses: courses});
             });
     }
@@ -33,19 +30,17 @@ class CourseList extends React.Component {
         this.courseServiceClient
             .deleteCourse(courseId)
             .then(() => { this.findAllCourses(); });
-
     }
 
     renderCourseRows() {
-
             var rows = this.state.courses.map((course) => {
                 return <CourseRow course={course} key={course.id}
                                   delete={this.deleteCourse}/>
             });
 
-        return (
+            return (
             rows
-        )
+            )
 
     }
 
@@ -54,13 +49,12 @@ class CourseList extends React.Component {
         this.setState({
             course: { title: event.target.value }
         });
-
     }
+
     createCourse() {
         this.courseServiceClient
             .createCourse(this.state.course)
             .then(() => { this.findAllCourses(); });
-
     }
 
 
@@ -68,21 +62,31 @@ class CourseList extends React.Component {
     render() {
         return (
             <div>
-                <h2>Course List</h2>
+                <h1>Course List</h1>
                 <table className="table">
                     <thead><tr><th>Title</th></tr></thead>
+
                     <tbody>
                     <tr>
                         <th><input onChange={this.titleChanged}
                                    className="form-control" id="titleFld"
-                                   placeholder="cs101"/></th>
+                                   placeholder="cs101"/>
+                        </th>
                         <th><button onClick={this.createCourse}
-                                    className="btn btn-primary">Add</button></th>
+                                    className="btn btn-primary"> Add
+                        </button>
+                        </th>
                     </tr>
 
-
+                    <tr>
+                        <th>CoureList</th>
+                        <th>Owner</th>
+                        <th>Created time</th>
+                        <th>Last Modified time</th>
+                    </tr>
 
                     {this.renderCourseRows()}
+
                     </tbody>
                 </table>
             </div>

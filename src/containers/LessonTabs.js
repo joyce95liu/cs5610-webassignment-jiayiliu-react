@@ -1,32 +1,32 @@
 import React from 'react';
-import ModuleServiceClient from "../services/ModuleServiceClient";
 import LessonServiceClient from "../services/LessonServiceClient"
 import LessonTab from "../components/LessonTab"
-
 
 export default class LessonTabs extends React.Component {
 
     constructor(props) {
         super(props);
-        this.lessonServiceClient=LessonServiceClient.instance;
 
         this.state = {
             courseId: '',
             moduleId:'',
             lesson: { title: '' },
             lessons: [],
+            current:''
 
         };
+
+        this.lessonServiceClient=LessonServiceClient.instance;
         this.createLesson=this.createLesson.bind(this);
         this.titleChanged=this.titleChanged.bind(this);
         this.setCourseId=this.setCourseId.bind(this);
         this.setModuleId=this.setModuleId.bind(this);
         this.deleteLesson=this.deleteLesson.bind(this);
+        this.handleClick=this.handleClick.bind(this);
     }
 
     titleChanged(event) {
-         console.log(event.target.value);
-        this.setState({lesson: {title: event.target.value}});
+         this.setState({lesson: {title: event.target.value}});
 
     }
 
@@ -39,23 +39,22 @@ export default class LessonTabs extends React.Component {
 
     }
 
-
-
     componentDidMount() {
         this.setCourseId(this.props.courseId);
         this.setModuleId(this.props.moduleId);
     }
+
     componentWillReceiveProps(newProps){
         this.setCourseId(newProps.courseId);
         this.setModuleId(newProps.moduleId);
         this.findAllLessonsForModule(newProps.courseId,newProps.moduleId)
-
     }
 
+    handleClick(index){
+        this.setState({current:index});
+    }
 
     createLesson(){
-        // console.log('hi');
-        // console.log(this.state);
         this.lessonServiceClient
             .createLesson(this.state.courseId,this.state.moduleId,this.state.lesson)
             .then(() => {
@@ -64,6 +63,7 @@ export default class LessonTabs extends React.Component {
     }
 
     deleteLesson(lessonId){
+        window.confirm('Confirm that you want to delete the lesson');
         this.lessonServiceClient
             .deleteLesson(lessonId)
             .then(() => { this.findAllLessonsForModule(this.state.courseId,this.state.moduleId);
@@ -86,7 +86,8 @@ export default class LessonTabs extends React.Component {
                                      courseId={this.state.courseId}
                                      moduleId={this.state.moduleId}
                                      delete={this.deleteLesson}
-                                    />
+                                     handleClick={this.handleClick}
+                                     back={this.state.current}/>
           });
 
           return (
@@ -94,13 +95,12 @@ export default class LessonTabs extends React.Component {
           )
     }
 
-
     render() {
 
         return (
                 <div>
 
-
+                    <h1 className="font-italic"> Lesson List for module:{this.state.moduleId}</h1>
 
                     <input className="form-control"
                            onChange={this.titleChanged}
@@ -118,6 +118,5 @@ export default class LessonTabs extends React.Component {
 
                 </div>
         )
-
     }
 }

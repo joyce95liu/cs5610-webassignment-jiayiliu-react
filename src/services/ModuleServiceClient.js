@@ -1,9 +1,7 @@
 
-
 let _singleton = Symbol();
 
-const MODULE_API_URL =
-    'http://localhost:8080/api/course/CID/module';
+const MODULE_API_URL = 'http://localhost:8080/api/course/CID/module';
 
 
 export default class ModuleServiceClient {
@@ -45,7 +43,6 @@ export default class ModuleServiceClient {
                 return response.json();
             });
     }
-
 
 
     static get instance() {

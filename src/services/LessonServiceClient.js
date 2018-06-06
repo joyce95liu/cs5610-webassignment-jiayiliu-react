@@ -3,7 +3,6 @@ let _singleton = Symbol();
 const MODULE_API_URL =
     'http://localhost:8080/api/course/CID/module';
 
-
 export default class LessonServiceClient {
     constructor(singletonToken) {
         if (_singleton !== singletonToken)
@@ -34,8 +33,6 @@ export default class LessonServiceClient {
             return response;
         })
     }
-
-
 
 
     static get instance() {
