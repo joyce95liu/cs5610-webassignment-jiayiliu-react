@@ -1,7 +1,7 @@
 
 let _singleton = Symbol();
 
-const MODULE_API_URL = 'http://localhost:8080/api/course/CID/module';
+const MODULE_API_URL = 'https://webdev-summer-assignment.herokuapp.com/course/CID/module';
 
 
 export default class ModuleServiceClient {
@@ -29,7 +29,7 @@ export default class ModuleServiceClient {
 
     deleteModule(moduleId) {
        // return fetch(MODULE_API_URL + '/' + moduleId,
-        return fetch('http://localhost:8080/api/module'+'/'+moduleId,
+        return fetch('https://webdev-summer-assignment.herokuapp.com/module'+'/'+moduleId,
             {
                 method: 'DELETE'
             }).then(function (response) {
@@ -38,7 +38,7 @@ export default class ModuleServiceClient {
     }
 
     findAllModules(){
-        return fetch('http://localhost:8080/api/module')
+        return fetch('https://webdev-summer-assignment.herokuapp.com/module')
             .then(function(response){
                 return response.json();
             });
