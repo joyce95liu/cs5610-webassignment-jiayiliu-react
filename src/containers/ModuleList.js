@@ -14,6 +14,7 @@ class ModuleList extends React.Component {
             courseId: '',
             module: { title: '' },
             modules: [],
+            current:''
 
         };
 
@@ -21,6 +22,7 @@ class ModuleList extends React.Component {
         this.createModule=this.createModule.bind(this);
         this.setCourseId = this.setCourseId.bind(this);
         this.deleteModule=this.deleteModule.bind(this);
+        this.handleClick=this.handleClick.bind(this);
 
     }
 
@@ -58,6 +60,9 @@ class ModuleList extends React.Component {
 
 
 
+    handleClick(index){
+        this.setState({current:index});
+    }
 
     findAllModulesForCourse(courseId) {
         this.moduleServiceClient.findAllModulesForCourse(courseId)
@@ -73,20 +78,22 @@ class ModuleList extends React.Component {
     }
 
 
+
+
     renderListOfModules() {
         //let modules =   this.state.modules.map(function(module){
           //  return <ModuleListItem title={module.title} key={module.id}/>
        // });
 
         //return modules;
-        console.log('this');
-        console.log(this.state.modules)
-        console.log('this');
+
         var modules = this.state.modules.map((module) => {
             return <ModuleListItem module={module}
                 title={module.title} key={module.id}
                                    courseId={this.state.courseId}
-                                   delete={this.deleteModule}/>
+                                   handleClick={this.handleClick}
+                                   delete={this.deleteModule}
+                                   back={this.state.current}     />
         });
 
         return (
@@ -103,7 +110,8 @@ class ModuleList extends React.Component {
 
                 <br/>
 
-
+                <div className="row">
+                    <div className="col-4">
 
                 <input className="form-control"
                        onChange={this.titleChanged}
@@ -118,9 +126,12 @@ class ModuleList extends React.Component {
                 </button>
 
 
-                <ul className="list-group">
+                <ul className="list-group ">
                     { this.renderListOfModules()}
                 </ul>
+
+                    </div>
+                    <div className="col-8">
 
                 <div>
                     <Route
@@ -128,8 +139,9 @@ class ModuleList extends React.Component {
                        component={ModuleEditor}>
                     </Route>
                 </div>
+                    </div>
 
-
+                </div>
             </div>
             </Router>
         )

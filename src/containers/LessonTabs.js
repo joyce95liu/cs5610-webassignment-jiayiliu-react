@@ -112,7 +112,7 @@ export default class LessonTabs extends React.Component {
                         <i className="fa fa-plus"></i>
                     </button>
 
-                    <ul className="list-group">
+                    <ul className="nav nav-tabs">
                         { this.renderListOfLessons()}
                     </ul>
 
