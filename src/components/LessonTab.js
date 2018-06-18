@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
+
 
 export default class LessonTab extends React.Component {
     constructor(props){
@@ -32,10 +34,16 @@ export default class LessonTab extends React.Component {
         return (
 
                 <li className="nav-item ">
-                    <a className={this.state.currenttile}
-                       href="#"
-                        onClick={() =>{this.props.handleClick(this.props.lesson.id)}}>
+
+                    {/*<a className={this.state.currenttile}*/}
+                       {/*href="#"*/}
+                        {/*onClick={() =>{this.props.handleClick(this.props.lesson.id)}}>*/}
+                    {/*</a>*/}
+                        <Link className={this.state.currenttile}
+                              onClick={() =>{this.props.handleClick(this.props.lesson.id)}}
+                            to={`/course/${this.props.courseId}/module/${this.props.moduleId}/lesson/${this.props.lesson.id}`}>
                         {this.props.title}
+                        </Link>
 
                        <span >
                             <i className="fa fa-trash" onClick= {() =>
@@ -44,7 +52,7 @@ export default class LessonTab extends React.Component {
 
                             {/*<i className="fa fa-pencil"></i>*/}
                         </span>
-                     </a>
+
 
                  </li>
 

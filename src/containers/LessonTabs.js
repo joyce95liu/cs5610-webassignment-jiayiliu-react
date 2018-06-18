@@ -1,6 +1,9 @@
 import React from 'react';
 import LessonServiceClient from "../services/LessonServiceClient"
 import LessonTab from "../components/LessonTab"
+import {BrowserRouter as Router,Route} from 'react-router-dom'
+import ModuleEditor from "./ModuleEditor";
+import App from "./widgetList"
 
 export default class LessonTabs extends React.Component {
 
@@ -10,6 +13,7 @@ export default class LessonTabs extends React.Component {
         this.state = {
             courseId: '',
             moduleId:'',
+            lessonId:'',
             lesson: { title: '' },
             lessons: [],
             current:''
@@ -115,6 +119,12 @@ export default class LessonTabs extends React.Component {
                     <ul className="nav nav-tabs">
                         { this.renderListOfLessons()}
                     </ul>
+
+                    <div>
+                        <Route path="/course/:courseId/module/:moduleId/lesson/:lessonId"
+                               component={App}>
+                        </Route>
+                    </div>
 
                 </div>
         )
