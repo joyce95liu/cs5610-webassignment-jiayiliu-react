@@ -1,7 +1,7 @@
 import * as constants from "../constants/WidgetConstant";
 
 export const headingNameChanged=(dispatch,widgetId,newName)=>(
-    dispatch({type:constants.HEADING_NAME_CHANGED,id:widgetId,text:newName})
+    dispatch({type:constants.HEADING_NAME_CHANGED,id:widgetId,name:newName})
 )
 
 export const headingTextChanged=(dispatch,widgetId,newText)=>(
@@ -13,9 +13,11 @@ export const headingSizeChanged=(dispatch,widgetId,newSize)=>(
     dispatch({type:constants.HEADING_SIZE_CHANGED,id:widgetId,size:newSize})
 )
 
-export const paragraphTextChanged=(dispatch,widgetId,newText)=>(
+export const paragraphTextChanged=(dispatch,widgetId,newText)=>{
+    console.log('juju')
     dispatch({type:constants.PARAGRAPH_TEXT_CHANGED,id:widgetId,text:newText})
-)
+
+}
 
 
 export const paragraphNameChanged=(dispatch,widgetId,newName)=>(
@@ -24,7 +26,7 @@ export const paragraphNameChanged=(dispatch,widgetId,newName)=>(
 
 
 export const imageTextChanged=(dispatch,widgetId,newText)=>(
-    dispatch({type:constants.IMAGE_TEXT_CHANGED,id:widgetId,text:newText})
+    dispatch({type:constants.IMAGE_TEXT_CHANGED,id:widgetId,src:newText})
 )
 
 
@@ -43,11 +45,11 @@ export const linkNameChanged=(dispatch,widgetId,newName)=>(
 
 
 export const linkChanged=(dispatch,widgetId,newLink)=>(
-    dispatch({type:constants.LINK_CHANGED,id:widgetId,link:newLink})
+    dispatch({type:constants.LINK_CHANGED,id:widgetId,href:newLink})
 )
 
 export const listTextChanged=(dispatch,widgetId,newText)=>(
-    dispatch({type:constants.LIST_TEXT_CHANGED,id:widgetId,text:newText})
+    dispatch({type:constants.LIST_TEXT_CHANGED,id:widgetId,listItems:newText})
 )
 
 

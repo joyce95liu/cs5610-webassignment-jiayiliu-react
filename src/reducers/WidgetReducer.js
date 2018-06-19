@@ -71,7 +71,7 @@ export const widgetReducer=(state={widgets:[],preview:false},action)=>{
             return {
                 widgets:state.widgets.map(widget=>{
                     if(widget.id===action.id){
-                        widget.text=action.text
+                        widget.src=action.src
                     }
                     return Object.assign({},widget)
                 })
@@ -89,6 +89,7 @@ export const widgetReducer=(state={widgets:[],preview:false},action)=>{
             }
 
         case constants.PARAGRAPH_TEXT_CHANGED:
+
             return {
                 widgets:state.widgets.map(widget=>{
                     if(widget.id===action.id){
@@ -124,7 +125,7 @@ export const widgetReducer=(state={widgets:[],preview:false},action)=>{
             return {
                 widgets:state.widgets.map(widget=>{
                     if(widget.id===action.id){
-                        widget.link=action.link
+                        widget.href=action.href
                     }
                     return Object.assign({},widget)
                 })
@@ -136,7 +137,7 @@ export const widgetReducer=(state={widgets:[],preview:false},action)=>{
             return {
                 widgets:state.widgets.map(widget=>{
                     if(widget.id===action.id){
-                        widget.text=action.text
+                        widget.listItems=action.listItems
                     }
                     return Object.assign({},widget)
                 })
@@ -221,10 +222,12 @@ export const widgetReducer=(state={widgets:[],preview:false},action)=>{
                     {id:state.widgets.length+1,
                         name:'',
                         text:'',
-                        widgetType:'Paragraph',
-                        link:'',
+                        widgetType:'Heading',
+                        href:'',
+                        src:'',
                         listType:'Ordered',
-                        size:'2'}
+                        listItems:'',
+                        size:'1'}
                 ]
             }
         default:

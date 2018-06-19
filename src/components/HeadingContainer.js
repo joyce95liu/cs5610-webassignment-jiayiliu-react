@@ -43,25 +43,15 @@ const Heading=({ widget,preview,headingTextChanged,headingSizeChanged,headingNam
     )
 }
 const dispatchToPropsMapper=dispatch=>({
-
-    headingTextChanged:(widgetId,newText)=>
-        actions.headingTextChanged(dispatch,widgetId,newText),
-
-    headingSizeChanged:(widgetId,newSize)=>
-        actions.headingSizeChanged(dispatch,widgetId,newSize),
-
-    headingNameChanged:(widgetId,newName)=>
-        actions.headingNameChanged(dispatch,widgetId,newName)
-
+    headingTextChanged:(widgetId,newText)=> actions.headingTextChanged(dispatch,widgetId,newText),
+    headingSizeChanged:(widgetId,newSize)=> actions.headingSizeChanged(dispatch,widgetId,newSize),
+    headingNameChanged:(widgetId,newName)=> actions.headingNameChanged(dispatch,widgetId,newName)
 })
 
 const stateToPropsMapper=state=>({
     preview:state.preview
 })
 
-
-
 const HeadingContainer=connect(stateToPropsMapper,dispatchToPropsMapper)(Heading)
-
 
 export default HeadingContainer

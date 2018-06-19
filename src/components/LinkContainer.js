@@ -11,15 +11,14 @@ const Link=({ widget,preview,linkNameChanged,linkTextChanged,linkChanged})=> {
         <div className="form-control">
             <div hidden={preview}>
                 <h2> Link </h2>
-                {/*{widget.size}*/}
                 <div>
                     <input className="form-control container-fluid"
                            placeholder="Link URL"
                         onChange={()=>linkChanged(widget.id,linkElem.value)}
-                           value={widget.link}
+                           value={widget.href}
                            ref={node=>linkElem=node}/>
-
                 </div>
+
                 <div>
                     <input className="form-control container-fluid"
                            placeholder="Link Text"
@@ -27,6 +26,7 @@ const Link=({ widget,preview,linkNameChanged,linkTextChanged,linkChanged})=> {
                            value={widget.text}
                            ref={node=>inputElem=node}/>
                 </div>
+
                 <input className="form-control container-fluid"
                        placeholder="Widget Name"
                     onChange={()=>linkNameChanged(widget.id,nameElem.value)}
@@ -35,21 +35,14 @@ const Link=({ widget,preview,linkNameChanged,linkTextChanged,linkChanged})=> {
                 </input>
             </div>
             <h3>Preview</h3>
-            <a href={widget.link}>{widget.text}</a>
+            <a href={widget.href}>{widget.text}</a>
         </div>
-
     )
 }
 const dispatchToPropsMapper=dispatch=>({
-
-    linkTextChanged:(widgetId,newText)=>
-        actions.linkTextChanged(dispatch,widgetId,newText),
-
-    linkNameChanged:(widgetId,newName)=>
-        actions.linkNameChanged(dispatch,widgetId,newName),
-
-    linkChanged:(widgetId,newLink)=>
-        actions.linkChanged(dispatch,widgetId,newLink),
+    linkTextChanged:(widgetId,newText)=> actions.linkTextChanged(dispatch,widgetId,newText),
+    linkNameChanged:(widgetId,newName)=> actions.linkNameChanged(dispatch,widgetId,newName),
+    linkChanged:(widgetId,newLink)=> actions.linkChanged(dispatch,widgetId,newLink),
 
 })
 
@@ -57,8 +50,6 @@ const stateToPropsMapper=state=>({
     preview:state.preview
 })
 
-
 const LinkContainer=connect(stateToPropsMapper,dispatchToPropsMapper)(Link)
-
 
 export default LinkContainer

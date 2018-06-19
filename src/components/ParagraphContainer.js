@@ -11,12 +11,11 @@ const Paragraph=({ widget,preview,paragraphNameChanged,paragraphTextChanged})=> 
             <div hidden={preview}>
                 <h2> Paragraph </h2>
                 {/*{widget.size}*/}
-                <textarea className="form-control "
+                <textarea className="form-control"
                     placeholder="text"
                     onChange={()=>paragraphTextChanged(widget.id,selectElem.value)}
                         value={widget.text}
-                        ref={node => selectElem = node}>
-                </textarea>
+                        ref={node => selectElem = node}/>
                 <div>
                 <input className="form-control container-fluid"
                     placeholder="Widget Name"
